@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:background="#EAFFF0">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="Sign up"
+        android:textStyle="bold"
+        android:textColor="#19491E"
+        android:textSize="50sp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:padding="40dp">
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="아 이 디   : "
+                android:textSize="15sp"/>
+            <EditText
+                android:id="@+id/editID"
+                android:layout_width="0dp"
+                android:layout_weight="3"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="비밀번호 : "
+                android:textSize="15sp"/>
+            <EditText
+                android:id="@+id/editPwd"
+                android:layout_width="0dp"
+                android:layout_weight="3"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="닉 네 임   : "
+                android:textSize="15sp"/>
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="0dp"
+                android:layout_weight="3"/>
+        </TableRow>
+    </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bntCancel"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="30dp"
+            android:text="취소"
+            android:textSize="15sp"
+            android:background="#A9F8AE"/>
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="40dp"
+            android:background="#A9F8AE"
+            android:text="완료"
+            android:textSize="15sp" />
+    </LinearLayout>
+</LinearLayout>

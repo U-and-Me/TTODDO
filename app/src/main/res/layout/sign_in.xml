@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAFFF0">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:text="Sign in"
+        android:textStyle="bold"
+        android:textColor="#19491E"
+        android:textSize="50sp"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:padding="40dp">
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="아 이 디   : "
+                android:textSize="15sp"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="3"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="비밀번호 : "
+                android:textSize="15sp"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="3"/>
+        </TableRow>
+    </TableLayout>
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:background="#A9F8AE"
+        android:text="로그인"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"/>
+</LinearLayout>
