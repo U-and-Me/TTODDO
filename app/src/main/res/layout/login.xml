@@ -2,51 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAFFF0">
+    android:background="#E8F6FF">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="140dp"
-        android:text="ToDo"
+        android:text="TToDDO"
         android:textSize="50sp"
         android:textStyle="bold"
-        android:textColor="#19491E"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:text="List"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="#19491E"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnSignup"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:layout_marginLeft="40dp"
-            android:text="회원가입"
-            android:textSize="15sp"
-            android:background="#A9F8AE"/>
+        android:textColor="#284289"/>
 
         <Button
             android:id="@+id/btnSignin"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:layout_marginLeft="40dp"
-            android:background="#A9F8AE"
+            android:layout_width="190dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="110dp"
             android:text="로그인"
-            android:textSize="15sp" />
+            android:textSize="24sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="@drawable/button_round"/>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnSignup"
+            android:layout_width="190dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/button_round"
+            android:backgroundTint="#283C72"
+            android:text="회원가입"
+            android:textSize="24sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
 
 </LinearLayout>

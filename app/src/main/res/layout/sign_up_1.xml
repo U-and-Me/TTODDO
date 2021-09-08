@@ -2,56 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
-    android:background="#EAFFF0">
+    android:padding="20dp"
+    android:background="#E8F6FF">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="Sign up"
+        android:layout_marginTop="100dp"
+        android:text="회원가입"
         android:textStyle="bold"
-        android:textColor="#19491E"
-        android:textSize="50sp"/>
-
+        android:textColor="#283C72"
+        android:textSize="35sp"/>
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:padding="40dp">
+        android:layout_marginTop="85dp"
+        android:padding="10dp">
         <TableRow>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="아 이 디   : "
-                android:textSize="15sp"/>
+                android:textColor="#283C72"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
             <EditText
                 android:id="@+id/editID"
                 android:layout_width="0dp"
-                android:layout_weight="3"/>
+                android:layout_weight="2.5"
+                />
         </TableRow>
         <TableRow>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="비밀번호 : "
-                android:textSize="15sp"/>
+                android:textColor="#283C72"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
             <EditText
                 android:id="@+id/editPwd"
                 android:layout_width="0dp"
-                android:layout_weight="3"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="닉 네 임   : "
-                android:textSize="15sp"/>
-            <EditText
-                android:id="@+id/editName"
-                android:layout_width="0dp"
-                android:layout_weight="3"/>
+                android:layout_weight="2.5"/>
         </TableRow>
     </TableLayout>
     <LinearLayout
@@ -61,21 +54,24 @@
         <Button
             android:id="@+id/bntCancel"
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="25dp"
             android:text="취소"
-            android:textSize="15sp"
-            android:background="#A9F8AE"/>
-
+            android:textSize="21sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="@drawable/button_round"/>
         <Button
-            android:id="@+id/btnOk"
+            android:id="@+id/btnNext"
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="40dp"
-            android:background="#A9F8AE"
-            android:text="완료"
-            android:textSize="15sp" />
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="45dp"
+            android:background="@drawable/button_round"
+            android:text="다음"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="21sp" />
     </LinearLayout>
 </LinearLayout>
