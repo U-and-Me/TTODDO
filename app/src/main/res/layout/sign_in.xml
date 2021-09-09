@@ -39,7 +39,8 @@
                 android:id="@+id/editID"
                 android:layout_width="0dp"
                 android:layout_weight="2.5"
-                />
+                android:backgroundTint="#707070"
+                android:drawableBottom="@drawable/button_round"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -52,7 +53,9 @@
             <EditText
                 android:id="@+id/editPwd"
                 android:layout_width="0dp"
-                android:layout_weight="2.5"/>
+                android:layout_weight="2.5"
+                android:backgroundTint="#707070"
+                android:drawableBottom="@drawable/button_round" />
         </TableRow>
     </TableLayout>
     <Button

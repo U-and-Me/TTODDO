@@ -31,7 +31,8 @@
                 android:id="@+id/editID"
                 android:layout_width="0dp"
                 android:layout_weight="2.5"
-                />
+                android:backgroundTint="#707070"
+                android:drawableBottom="@drawable/button_round" />
         </TableRow>
         <TableRow>
             <TextView
@@ -44,7 +45,9 @@
             <EditText
                 android:id="@+id/editPwd"
                 android:layout_width="0dp"
-                android:layout_weight="2.5"/>
+                android:layout_weight="2.5"
+                android:backgroundTint="#707070"
+                android:drawableBottom="@drawable/button_round"/>
         </TableRow>
     </TableLayout>
     <LinearLayout
@@ -52,7 +55,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/bntCancel"
+            android:id="@+id/btnCancel"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:layout_marginTop="100dp"

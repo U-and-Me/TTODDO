@@ -38,9 +38,11 @@
                 android:textStyle="bold"
                 android:textSize="20sp"/>
             <EditText
-                android:id="@+id/editPwd"
+                android:id="@+id/editNick"
                 android:layout_width="0dp"
-                android:layout_weight="2.5"/>
+                android:layout_weight="2.5"
+                android:backgroundTint="#707070"
+                android:drawableBottom="@drawable/button_round" />
         </TableRow>
     </TableLayout>
         <Button
