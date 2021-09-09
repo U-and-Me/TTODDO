@@ -12,18 +12,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="90dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="110dp"
         android:text="TTo"
-        android:textSize="65sp"
+        android:textSize="75sp"
         android:textStyle="bold"
         android:textColor="#284289"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="185dp"
-        android:layout_marginTop="5dp"
         android:text="DDo"
-        android:textSize="65sp"
+        android:textSize="75sp"
         android:textStyle="bold"
         android:textColor="#284289"/>
     <Button
@@ -31,7 +30,7 @@
         android:layout_width="190dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="135dp"
         android:text="시작하기"
         android:textColor="#ffffff"
         android:textStyle="bold"
