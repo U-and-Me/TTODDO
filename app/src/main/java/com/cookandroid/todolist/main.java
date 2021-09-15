@@ -18,5 +18,15 @@ public class main extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        editDay = findViewById(R.id.editDay);
+        txtName = findViewById(R.id.txtName);
+        btnList = findViewById(R.id.btnList);
+        btnCal = findViewById(R.id.btnCal);
+        btnLeft = findViewById(R.id.btnLeft);
+        btnRight = findViewById(R.id.btnRight);
+
+
+
     }
 }
