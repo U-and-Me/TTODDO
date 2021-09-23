@@ -13,12 +13,13 @@
         android:id="@+id/btnList"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/list"/>
+        android:background="@drawable/ic_format_list_bulleted_black_24dp"/>
         <Button
             android:id="@+id/btnCal"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/calender"/>
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/ic_date_range_black_24dp"/>
     </LinearLayout>
 
     <LinearLayout
