@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class main extends AppCompatActivity {
 
-    EditText editDay;
-    TextView txtName;
+    TextView txtName, txtDate;
     Button btnList, btnCal, btnLeft, btnRight;
 
     @Override
@@ -21,7 +20,7 @@ public class main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        editDay = findViewById(R.id.editDay);
+        txtDate = findViewById(R.id.txtDate);
         txtName = findViewById(R.id.txtName);
         btnList = findViewById(R.id.btnList);
         btnCal = findViewById(R.id.btnCal);

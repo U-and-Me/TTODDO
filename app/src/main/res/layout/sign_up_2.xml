@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:background="#E8F6FF">
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="뚜두에서 사용할 닉네임을 설정해주세요!!"
+        android:text="사용할 닉네임을 설정해주세요!!"
         android:textStyle="bold"
         android:textColor="#283C72"
         android:textSize="15sp"/>
