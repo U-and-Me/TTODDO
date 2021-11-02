@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:text="회원가입"
         android:textStyle="bold"
         android:textColor="#283C72"
@@ -16,9 +16,10 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        android:padding="10dp">
-        <TableRow>
+        android:layout_marginTop="70dp"
+        android:padding="5dp">
+        <TableRow
+            android:layout_marginBottom="22dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"

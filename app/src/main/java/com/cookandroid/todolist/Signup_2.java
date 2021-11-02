@@ -14,6 +14,8 @@ public class Signup_2 extends AppCompatActivity {
     EditText editNick;
     Button btnOk;
 
+    String NickName;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +27,14 @@ public class Signup_2 extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                NickName = editNick.getText().toString();
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
 
-    }
+    } //onCreat
+
 }
