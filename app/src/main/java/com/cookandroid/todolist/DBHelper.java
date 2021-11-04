@@ -14,7 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE memberTBL(Id CHAR(30) PRIMARY KEY, Pwd CHAR(12), Name CHAR(20));";
+        String sql = "CREATE TABLE memberTBL(Id CHAR(30) PRIMARY KEY, Pwd CHAR(20), Name CHAR(30));";
         sqLiteDatabase.execSQL(sql);
     }
 

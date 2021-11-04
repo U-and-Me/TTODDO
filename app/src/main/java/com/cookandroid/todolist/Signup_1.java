@@ -3,6 +3,7 @@ package com.cookandroid.todolist;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaRouter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,20 +47,18 @@ public class Signup_1 extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Userpwd= editPWD.getText().toString();
+                Userid = editID.getText().toString();
 
-                int chPWD = 0;
-                int chID = checkID();
-
-                if(chID == 1) {
-                    chPWD = checkPWD();
-                }
-
-                if(chID == 1 && chPWD == 1) {
-
-                    Intent intent = new Intent(getApplicationContext(), Signup_2.class);
-                    intent.putExtra(Userid, Userpwd);
-                    startActivity(intent);
-                    editID.setText(""); editPWD.setText("");
+                if(checkID()==1) {
+                    if (checkPWD() == 1) {
+                        Intent intent = new Intent(getApplicationContext(), Signup_2.class);
+                        intent.putExtra("Userid", Userid);
+                        intent.putExtra("Userpwd", Userpwd);
+                        startActivity(intent);
+                        editID.setText("");
+                        editPWD.setText("");
+                    }
                 }
             }
         });
@@ -69,24 +68,24 @@ public class Signup_1 extends AppCompatActivity {
     } // onCreat()
 
     int checkID(){
-        Userid = editID.getText().toString();
-        if(Userid.length() < 5){
-            Toast.makeText(getApplicationContext(), "5자 이상 입력해주세요", Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(getApplicationContext(), Userid, Toast.LENGTH_SHORT).show();
+        if(Userid.length() < 3){
+            Toast.makeText(getApplicationContext(), "3자 이상 입력해주세요", Toast.LENGTH_SHORT).show();
             return -1;
         }
-
-        sqlDB = MemHelper.getWritableDatabase();
-        Cursor cursor;
-        cursor = sqlDB.rawQuery("select * from memberTBL where Id;", null);
-
-        if(cursor.moveToNext()){
+        sqlDB = MemHelper.getReadableDatabase();
+        Cursor cursor ;
+        cursor=sqlDB.rawQuery("select * from memberTBL where Id='"+ Userid +"';", null);
+        //cursor=sqlDB.rawQuery("select Id from memberTBL;", null);
+        cursor.moveToFirst();
+        while(cursor.moveToNext()){
             String strName = cursor.getString(0);
             if(Userid.equals(strName)){
                 Toast.makeText(getApplicationContext(), "중복된 ID 입니다.", Toast.LENGTH_SHORT).show();
-                return -1;
+                return 0;
             }
         }
-
         cursor.close();
         sqlDB.close();
 
@@ -94,10 +93,10 @@ public class Signup_1 extends AppCompatActivity {
     }
 
     int checkPWD(){
-        Userpwd= editPWD.getText().toString();
-        if(Userpwd.length() < 8){
-            Toast.makeText(getApplicationContext(), "8자 이상 입력해주세요", Toast.LENGTH_SHORT).show();
-            return -1;
+
+        if(Userpwd.length() < 4){
+            Toast.makeText(getApplicationContext(), "4자 이상 입력해주세요", Toast.LENGTH_SHORT).show();
+            return 0;
         }
 
         return 1;
