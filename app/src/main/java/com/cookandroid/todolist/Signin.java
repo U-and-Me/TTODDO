@@ -1,6 +1,8 @@
 package com.cookandroid.todolist;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,9 @@ public class Signin extends AppCompatActivity {
     String Userid = "";
     String Userpwd = "";
 
+    DBHelper MemHelper;
+    SQLiteDatabase sqlDB;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,18 +35,15 @@ public class Signin extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int chID = checkID();
-                int chPWD = checkPWD();
 
-                if(chID == -1){
-                    Toast.makeText(getApplicationContext(), "ID를 입력해주세요", Toast.LENGTH_LONG).show();
-                }
-                if(chPWD == -1){
-                    Toast.makeText(getApplicationContext(), "PWD를 입력해주세요", Toast.LENGTH_LONG).show();
-                }
-                if(chID == 1 && chPWD == 1) {
-                    Intent intent = new Intent(getApplicationContext(), main.class);
-                    startActivity(intent);
+                Userid = editID.getText().toString();
+                Userpwd = editPwd.getText().toString();
+
+                if(checkID() == 1) {
+                    if (checkPWD() == 1) {
+                        Intent intent = new Intent(getApplicationContext(), main.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -51,15 +53,47 @@ public class Signin extends AppCompatActivity {
     } // onCreat()
 
     int checkID(){
-        Userid = editID.getText().toString();
-        if(Userid.length() != 0) return 1;
-        return -1;
+        if(Userid.length() == 0){
+            Toast.makeText(getApplicationContext(), "ID를 입력해주세요", Toast.LENGTH_SHORT).show();
+            return 0;
+        }
+/*
+        sqlDB = MemHelper.getReadableDatabase();
+        Cursor cursor ;
+        cursor=sqlDB.rawQuery("select * from memberTBL where Id='"+ Userid +"';", null);
+        while(cursor.moveToNext()){
+            String strId = cursor.getString(0);
+            if(Userid.equals(strId)){
+                Toast.makeText(getApplicationContext(), "없는 ID입니다.", Toast.LENGTH_SHORT).show();
+                return 0;
+            }
+        }
+        cursor.close();
+        sqlDB.close();
+*/
+        return 1;
     }
 
     int checkPWD(){
-        Userpwd = editPwd.getText().toString();
-        if(Userpwd.length() != 0) return 1;
-        return -1;
+        if(Userpwd.length() == 0) {
+            Toast.makeText(getApplicationContext(), "PWD를 입력해주세요", Toast.LENGTH_SHORT).show();
+            return 0;
+        }
+/*
+        sqlDB = MemHelper.getReadableDatabase();
+        Cursor cursor ;
+        cursor=sqlDB.rawQuery("select Pwd from memberTBL where Id='"+ Userid +"';", null);
+        while(cursor.moveToNext()){
+            String strPwd = cursor.getString(0);
+            if(Userpwd.equals(strPwd)){
+                Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                return 0;
+            }
+        }
+        cursor.close();
+        sqlDB.close();
+*/
+        return 1;
     }
 
 }

@@ -77,11 +77,9 @@ public class Signup_1 extends AppCompatActivity {
         sqlDB = MemHelper.getReadableDatabase();
         Cursor cursor ;
         cursor=sqlDB.rawQuery("select * from memberTBL where Id='"+ Userid +"';", null);
-        //cursor=sqlDB.rawQuery("select Id from memberTBL;", null);
-        cursor.moveToFirst();
         while(cursor.moveToNext()){
-            String strName = cursor.getString(0);
-            if(Userid.equals(strName)){
+            String strId = cursor.getString(0);
+            if(Userid.equals(strId)){
                 Toast.makeText(getApplicationContext(), "중복된 ID 입니다.", Toast.LENGTH_SHORT).show();
                 return 0;
             }
