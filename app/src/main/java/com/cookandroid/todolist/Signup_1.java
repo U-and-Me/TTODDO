@@ -3,7 +3,6 @@ package com.cookandroid.todolist;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.MediaRouter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
