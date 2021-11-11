@@ -42,6 +42,7 @@ public class Signin extends AppCompatActivity {
                     if (checkPWD() == 1) {
                        //Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), main.class);
+                        intent.putExtra("Userid" , Userid);
                         startActivity(intent);
                     }
                 }
