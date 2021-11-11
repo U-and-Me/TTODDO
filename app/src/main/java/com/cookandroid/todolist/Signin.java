@@ -20,7 +20,7 @@ public class Signin extends AppCompatActivity {
     String Userid;
     String Userpwd;
 
-    DBHelper MemHelper;
+    //DBHelper MemHelper= new DBHelper(this);
     SQLiteDatabase sqlDB;
 
     @Override
@@ -32,23 +32,19 @@ public class Signin extends AppCompatActivity {
         editID = findViewById(R.id.editID);
         editPwd = findViewById(R.id.editPwd);
 
-        // DB 생성 또는 기존 DB 불러오기
-
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Userpwd= editPwd.getText().toString();
                 Userid = editID.getText().toString();
 
-                //if(checkID()==1) {
-
+                if(checkID()==1) {
                     if (checkPWD() == 1) {
                        //Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), main.class);
                         startActivity(intent);
                     }
-               // }
+                }
 
             }
         });
@@ -60,18 +56,19 @@ public class Signin extends AppCompatActivity {
             return 0;
         }
 
-        sqlDB = MemHelper.getReadableDatabase();
+        sqlDB = DBCreate.MemHelper.getReadableDatabase();
         Cursor cursor ;
         cursor=sqlDB.rawQuery("select Id from memberTBL where Id='"+ Userid +"';", null);
+        cursor.moveToFirst();
         String strId = cursor.getString(0);
         if (Userid.equals(strId)) {
-            cursor.close();
-            sqlDB.close();
+            //cursor.close();
+           // sqlDB.close();
             return 1;
         }
 
-        cursor.close();
-        sqlDB.close();
+        //cursor.close();
+        //sqlDB.close();
 
         Toast.makeText(getApplicationContext(), "없는 ID입니다.", Toast.LENGTH_SHORT).show();
 
@@ -84,17 +81,18 @@ public class Signin extends AppCompatActivity {
             return 0;
         }
 
-        sqlDB = MemHelper.getReadableDatabase();
+        sqlDB = DBCreate.MemHelper.getReadableDatabase();
         Cursor cursor ;
         cursor=sqlDB.rawQuery("select Pwd from memberTBL where Id='"+ Userid +"';", null);
+        cursor.moveToFirst();
         String strPwd = cursor.getString(0);
         if(Userpwd.equals(strPwd)){
-            cursor.close();
-            sqlDB.close();
+            //cursor.close();
+            //sqlDB.close();
             return 1;
         }
-        cursor.close();
-        sqlDB.close();
+        //cursor.close();
+       // sqlDB.close();
 
         return 0;
     }
