@@ -18,7 +18,7 @@ public class Signup_2 extends AppCompatActivity {
 
     String NickName;
 
-    DBHelper MemHelper;
+    //DBCreate MemHelper = new DBCreate(this);
     SQLiteDatabase sqlDB;
     String id, pwd;
     @Override
@@ -29,7 +29,7 @@ public class Signup_2 extends AppCompatActivity {
         editNick = findViewById(R.id.editNick);
         btnOk = findViewById(R.id.btnOk);
 
-        MemHelper = new DBHelper(this);
+        //MemHelper = new DBHelper(this);
 
         Intent in = getIntent();
         id = in.getStringExtra("Userid");
@@ -44,7 +44,7 @@ public class Signup_2 extends AppCompatActivity {
                 try {
                     NickName = editNick.getText().toString();
 
-                    sqlDB = MemHelper.getWritableDatabase();
+                    sqlDB = DBCreate.MemHelper.getWritableDatabase();
                     String sql = "insert into memberTBL(Id, Pwd, Name) ";
                     sql += "values('" + id + "','" + pwd + "','" + NickName + "');";
 
