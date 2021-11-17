@@ -9,10 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+
 public class calender extends AppCompatActivity {
 
     TextView txtYear, txtMonth, txtDay;
     Button btnList, btnHome;
+
+    Calendar cal = Calendar.getInstance();
+
+    int year;
+    int month;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,6 +28,14 @@ public class calender extends AppCompatActivity {
 
         btnList = findViewById(R.id.btnList);
         btnHome = findViewById(R.id.btnHome);
+        txtYear = findViewById(R.id.txtYear);
+        txtMonth = findViewById(R.id.txtMonth);
+
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
+
+        txtYear.setText(year+".");
+        txtMonth.setText(month);
 
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,24 +12,22 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class main extends AppCompatActivity {
 
     TextView txtName, txtDate;
-    Button btnList, btnCal, btnLeft, btnRight;
+    Button btnList, btnCal;
+
+    Calendar cal = Calendar.getInstance();
 
     SQLiteDatabase sqlDB;
 
-   GregorianCalendar today = new GregorianCalendar();
-
     String UserId = "";
     String NickName = "";
-    int year = 0;
     int month = 0;
     int date = 0;
-    int[] dates = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int LeapYear = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,8 +38,6 @@ public class main extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         btnList = findViewById(R.id.btnList);
         btnCal = findViewById(R.id.btnCal);
-        btnLeft = findViewById(R.id.btnLeft);
-        btnRight = findViewById(R.id.btnRight);
 
         Intent in = getIntent();
         UserId = in.getStringExtra("Userid");
@@ -71,13 +67,8 @@ public class main extends AppCompatActivity {
         txtName.setText(NickName);
 
         // 날짜 가져오기(월, 일)
-        year = today.get(today.YEAR);
-        month = today.get(today.MONTH) + 1;
-        date = today.get(today.DAY_OF_MONTH);
-
-        // 윤년 체크하기
-        if(year % 4 == 0) dates[1] = 29;
-        else dates[1] = 28;
+        month = cal.get(Calendar.MONTH) + 1;
+        date = cal.get(Calendar.DATE);
 
         if(month < 10){
             if(date < 10)
@@ -90,42 +81,6 @@ public class main extends AppCompatActivity {
             else
                 txtDate.setText(month+"월 "+date+"일");
         }
-
-        btnLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                date--;
-                if(month < 10){
-                    if(date < 10)
-                        txtDate.setText("0"+month+"월 "+"0"+date+"일");
-                    else
-                        txtDate.setText("0"+month+"월 "+date+"일");
-                }else{
-                    if(date < 10)
-                        txtDate.setText(month+"월 "+"0"+date+"일");
-                    else
-                        txtDate.setText(month+"월 "+date+"일");
-                }
-            }
-        });
-
-        btnRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                date++;
-                if(month < 10){
-                    if(date < 10)
-                        txtDate.setText("0"+month+"월 "+"0"+date+"일");
-                    else
-                        txtDate.setText("0"+month+"월 "+date+"일");
-                }else{
-                    if(date < 10)
-                        txtDate.setText(month+"월 "+"0"+date+"일");
-                    else
-                        txtDate.setText(month+"월 "+date+"일");
-                }
-            }
-        });
 
     }
 }
