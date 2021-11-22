@@ -64,6 +64,9 @@ public class main extends AppCompatActivity {
         cursor.moveToFirst();
         NickName = cursor.getString(0);
 
+        cursor.close();
+        sqlDB.close();
+
         txtName.setText(NickName);
 
         // 날짜 가져오기(월, 일)

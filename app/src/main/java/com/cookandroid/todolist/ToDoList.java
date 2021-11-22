@@ -33,6 +33,7 @@ public class ToDoList extends AppCompatActivity {
         btnCal = findViewById(R.id.btnCal);
         btnAdd = findViewById(R.id.btnAdd);
         btnUpdate = findViewById(R.id.btnUpdate);
+        btnDel = findViewById(R.id.btnDel);
         btnLeft = findViewById(R.id.btnLeft);
         btnRight = findViewById(R.id.btnRight);
         editDay = findViewById(R.id.editDay);
@@ -69,9 +70,57 @@ public class ToDoList extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try{
-
+                            Toast.makeText(getApplicationContext(), "추가 성공", Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
-                            Toast.makeText(getApplicationContext(), "추가실패", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "추가 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                dlg.setNegativeButton("취소", null);
+                dlg.show();
+
+            }
+        });
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View v = View.inflate(getApplicationContext(), R.layout.update, null);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(ToDoList.this);
+
+                dlg.setTitle("할 일 수정");
+                dlg.setView(v);
+                dlg.setPositiveButton("수정", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try{
+                            Toast.makeText(getApplicationContext(), "수정 성공", Toast.LENGTH_SHORT).show();
+                        }catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "수정 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                dlg.setNegativeButton("취소", null);
+                dlg.show();
+
+            }
+        });
+
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View v = View.inflate(getApplicationContext(), R.layout.delete, null);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(ToDoList.this);
+
+                dlg.setTitle("할 일 삭제");
+                dlg.setView(v);
+                dlg.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try{
+                            Toast.makeText(getApplicationContext(), "삭제 성공", Toast.LENGTH_SHORT).show();
+                        }catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

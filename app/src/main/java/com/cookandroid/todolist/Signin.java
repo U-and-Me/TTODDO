@@ -63,13 +63,13 @@ public class Signin extends AppCompatActivity {
         cursor.moveToFirst();
         String strId = cursor.getString(0);
         if (Userid.equals(strId)) {
-            //cursor.close();
-           // sqlDB.close();
+            cursor.close();
+            sqlDB.close();
             return 1;
         }
 
-        //cursor.close();
-        //sqlDB.close();
+        cursor.close();
+        sqlDB.close();
 
         Toast.makeText(getApplicationContext(), "없는 ID입니다.", Toast.LENGTH_SHORT).show();
 
@@ -88,12 +88,12 @@ public class Signin extends AppCompatActivity {
         cursor.moveToFirst();
         String strPwd = cursor.getString(0);
         if(Userpwd.equals(strPwd)){
-            //cursor.close();
-            //sqlDB.close();
+            cursor.close();
+            sqlDB.close();
             return 1;
         }
-        //cursor.close();
-       // sqlDB.close();
+        cursor.close();
+        sqlDB.close();
 
         return 0;
     }
