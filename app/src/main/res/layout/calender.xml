@@ -12,7 +12,7 @@
             android:id="@+id/txtYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2021."
+            android:text="0000."
             android:textSize="30sp"
             android:textColor="#0E1A39"
             android:textStyle="bold"/>
@@ -20,7 +20,7 @@
             android:id="@+id/txtMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="09"
+            android:text="00"
             android:textSize="30sp"
             android:textColor="#0E1A39"
             android:textStyle="bold"/>
@@ -41,6 +41,7 @@
     </LinearLayout>
 
     <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"/>
@@ -49,19 +50,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/txtDay"
+            android:id="@+id/txtDate"
             android:paddingLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23. "
+            android:text="00. "
             android:textSize="30sp"
             android:textColor="#0E1A39"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/txtWeek"
+            android:id="@+id/txtDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="목"
+            android:text="O"
             android:textSize="30sp"
             android:textColor="#0E1A39"
             android:textStyle="bold"/>
