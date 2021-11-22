@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Signin extends AppCompatActivity {
 
-    Button btnLogin;
+    Button btnLogin, btnJoin;
     EditText editID, editPwd;
 
     String Userid;
@@ -29,6 +29,7 @@ public class Signin extends AppCompatActivity {
         setContentView(R.layout.sign_in);
 
         btnLogin = findViewById(R.id.btnLogin);
+        btnJoin = findViewById(R.id.btnJoin);
         editID = findViewById(R.id.editID);
         editPwd = findViewById(R.id.editPwd);
 
@@ -47,6 +48,14 @@ public class Signin extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        btnJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Join_1.class);
+                startActivity(intent);
             }
         });
     } // onCreat()

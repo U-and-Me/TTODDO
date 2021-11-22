@@ -16,10 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"/>
         <activity android:name=".Signin"/>
-        <activity android:name=".Signup_1"/>
-        <activity android:name=".Signup_2"/>
+        <activity android:name=".Join_1"/>
+        <activity android:name=".Join_2"/>
         <activity android:name=".main"/>
         <activity android:name=".calender"/>
         <activity android:name=".ToDoList"/>

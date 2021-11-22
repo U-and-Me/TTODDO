@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Signup_1 extends AppCompatActivity {
+public class Join_1 extends AppCompatActivity {
 
     EditText editID, editPWD;
     Button btnCancel, btnNext;
@@ -26,7 +26,7 @@ public class Signup_1 extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_1);
+        setContentView(R.layout.join_1);
 
         editID = findViewById(R.id.editID);
         editPWD = findViewById(R.id.editPwd);
@@ -51,7 +51,7 @@ public class Signup_1 extends AppCompatActivity {
 
                 if(checkID()==1) {
                     if (checkPWD() == 1) {
-                        Intent intent = new Intent(getApplicationContext(), Signup_2.class);
+                        Intent intent = new Intent(getApplicationContext(), Join_2.class);
                         intent.putExtra("Userid", Userid);
                         intent.putExtra("Userpwd", Userpwd);
                         startActivity(intent);

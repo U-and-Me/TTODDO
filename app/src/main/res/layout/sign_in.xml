@@ -56,15 +56,32 @@
                 android:drawableBottom="@drawable/button_round" />
         </TableRow>
     </TableLayout>
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="260dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_round"
-        android:text="로 그 인"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="21sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="70dp">
+        <Button
+            android:id="@+id/btnJoin"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_round"
+            android:text="회원가입"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="21sp" />
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_round"
+            android:text="로 그 인"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="21sp" />
+    </LinearLayout>
+
 </LinearLayout>
