@@ -2,10 +2,12 @@ package com.cookandroid.todolist;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -17,12 +19,13 @@ import java.util.Calendar;
 public class ToDoList extends AppCompatActivity {
 
     Button btnHome, btnCal, btnAdd, btnDel, btnUpdate, btnLeft, btnRight;
-    EditText editDay;
+    TextView txtDay;
 
     Calendar cal = Calendar.getInstance();
 
-    int year;
-    int month;
+
+
+    int month, date;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,12 +39,12 @@ public class ToDoList extends AppCompatActivity {
         btnDel = findViewById(R.id.btnDel);
         btnLeft = findViewById(R.id.btnLeft);
         btnRight = findViewById(R.id.btnRight);
-        editDay = findViewById(R.id.editDay);
+        txtDay = findViewById(R.id.txtDay);
 
-        year = cal.get(Calendar.YEAR);
-        month = cal.get(Calendar.MONTH);
+        month = cal.get(Calendar.MONTH) + 1;
+        date = cal.get(Calendar.DATE);
 
-        editDay.setText(year+"."+month);
+        txtDay.setText(month+"월 "+date+"일");
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +130,29 @@ public class ToDoList extends AppCompatActivity {
                 dlg.setNegativeButton("취소", null);
                 dlg.show();
 
+            }
+        });
+
+        btnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date--;
+                if(date < 1) {
+                    date = cal.getActualMaximum(month - 2);
+                    month--;
+                }
+                txtDay.setText(month+"월 "+date+"일");
+            }
+        });
+
+        btnRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date++;
+                if(date > cal.getActualMaximum(month-1)){
+                    date = 1;
+                }
+                txtDay.setText(month+"월 "+date+"일");
             }
         });
 

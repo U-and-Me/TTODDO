@@ -20,7 +20,9 @@ public class Signin extends AppCompatActivity {
     String Userid;
     String Userpwd;
 
-    //DBHelper MemHelper= new DBHelper(this);
+    String strId, strPwd;
+
+    DBHelper MemHelper;
     SQLiteDatabase sqlDB;
 
     @Override
@@ -32,6 +34,8 @@ public class Signin extends AppCompatActivity {
         btnJoin = findViewById(R.id.btnJoin);
         editID = findViewById(R.id.editID);
         editPwd = findViewById(R.id.editPwd);
+
+        MemHelper = new DBHelper(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,11 +70,10 @@ public class Signin extends AppCompatActivity {
             return 0;
         }
 
-        sqlDB = DBCreate.MemHelper.getReadableDatabase();
-        Cursor cursor ;
-        cursor=sqlDB.rawQuery("select Id from memberTBL where Id='"+ Userid +"';", null);
+        sqlDB = MemHelper.getWritableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT Id FROM " + "memberTBL", null);
         cursor.moveToFirst();
-        String strId = cursor.getString(0);
+        strId = cursor.getString(cursor.getColumnIndex("Id"));
         if (Userid.equals(strId)) {
             cursor.close();
             sqlDB.close();
@@ -91,11 +94,10 @@ public class Signin extends AppCompatActivity {
             return 0;
         }
 
-        sqlDB = DBCreate.MemHelper.getReadableDatabase();
-        Cursor cursor ;
-        cursor=sqlDB.rawQuery("select Pwd from memberTBL where Id='"+ Userid +"';", null);
+        sqlDB = MemHelper.getWritableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT Pwd FROM " + "memberTBL", null);
         cursor.moveToFirst();
-        String strPwd = cursor.getString(0);
+        strPwd = cursor.getString(cursor.getColumnIndex("Pwd"));
         if(Userpwd.equals(strPwd)){
             cursor.close();
             sqlDB.close();

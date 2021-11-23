@@ -22,6 +22,7 @@ public class main extends AppCompatActivity {
 
     Calendar cal = Calendar.getInstance();
 
+    DBHelper MemHelper;
     SQLiteDatabase sqlDB;
 
     String UserId = "";
@@ -38,6 +39,8 @@ public class main extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         btnList = findViewById(R.id.btnList);
         btnCal = findViewById(R.id.btnCal);
+
+        MemHelper = new DBHelper(this);
 
         Intent in = getIntent();
         UserId = in.getStringExtra("Userid");
@@ -58,11 +61,10 @@ public class main extends AppCompatActivity {
         });
 
         // 닉네임 가져오기
-        sqlDB = DBCreate.MemHelper.getReadableDatabase();
-        Cursor cursor;
-        cursor = sqlDB.rawQuery("select Name from memberTBL where Id='"+ UserId +"';", null);
+        sqlDB = MemHelper.getReadableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT Name FROM " + "memberTBL", null);
         cursor.moveToFirst();
-        NickName = cursor.getString(0);
+        NickName = cursor.getString(cursor.getColumnIndex("Name"));
 
         cursor.close();
         sqlDB.close();
