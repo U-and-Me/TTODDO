@@ -77,11 +77,11 @@
                 android:paddingLeft="10dp">
 
                 <CheckBox
+                    android:id="@+id/chklist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:buttonTint="#707070"
-                    android:text="안드 기획서 제출"
                     android:textColor="#0E1A39"
                     android:textSize="18sp"
                     android:textStyle="bold" />

@@ -106,6 +106,8 @@ public class Signin extends AppCompatActivity {
         cursor.close();
         sqlDB.close();
 
+        Toast.makeText(getApplicationContext(), "잘못된 PWD 입니다.", Toast.LENGTH_SHORT).show();
+
         return 0;
     }
 

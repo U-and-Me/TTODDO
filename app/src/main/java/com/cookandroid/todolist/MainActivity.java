@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnStart = findViewById(R.id.btnStart);
 
-        DBCreate MemHelper = new DBCreate(this);
-
         // btnStart 클릭시 로그인 창 이동
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
