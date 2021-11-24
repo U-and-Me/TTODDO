@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,9 @@ public class ToDoList extends AppCompatActivity {
 
     Button btnHome, btnCal, btnAdd, btnDel, btnUpdate, btnLeft, btnRight;
     TextView txtDay;
+    LinearLayout linearlist;
     CheckBox chklist;
+
 
     Calendar cal = Calendar.getInstance();
 
@@ -36,6 +39,8 @@ public class ToDoList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolist);
 
+        //selectDB();
+
         btnHome = findViewById(R.id.btnHome);
         btnCal = findViewById(R.id.btnCal);
         btnAdd = findViewById(R.id.btnAdd);
@@ -44,6 +49,7 @@ public class ToDoList extends AppCompatActivity {
         btnLeft = findViewById(R.id.btnLeft);
         btnRight = findViewById(R.id.btnRight);
         txtDay = findViewById(R.id.txtDay);
+        linearlist = findViewById(R.id.linearlist);
         chklist = findViewById(R.id.chklist);
 
         listHelper = new ListDBHelper(this);
@@ -134,7 +140,6 @@ public class ToDoList extends AppCompatActivity {
                 });
                 dlg.setNegativeButton("취소", null);
                 dlg.show();
-
             }
         });
 
@@ -167,7 +172,7 @@ public class ToDoList extends AppCompatActivity {
 
             }
         });
-
+/*
         btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,13 +195,27 @@ public class ToDoList extends AppCompatActivity {
                 txtDay.setText(month+"월 "+date+"일");
             }
         });
-
+*/
     } //onCreate
 
     public void selectDB(){
         sqlDB = listHelper.getReadableDatabase();
-        Cursor cursor = sqlDB.rawQuery("SELECT * FROM listTBL;", null);
+        Cursor cursor = sqlDB.rawQuery("SELECT todo FROM listTBL WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
 
+        String todo = "";
 
+        while (cursor.moveToNext()){
+            todo = cursor.getString(cursor.getColumnIndex("todo"));
+            //Toast.makeText(getApplicationContext(), todo, Toast.LENGTH_SHORT).show();
+            CheckBox chk = new CheckBox(this);
+            chk.setText(todo);
+            linearlist.addView(chk);
+        }
+
+        //chklist.setText(todo);
+        //Toast.makeText(getApplicationContext(), todo, Toast.LENGTH_SHORT).show();
+
+        cursor.close();
+        sqlDB.close();
     }
 }
