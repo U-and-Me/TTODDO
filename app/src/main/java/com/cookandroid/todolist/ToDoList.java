@@ -21,7 +21,7 @@ import java.util.Calendar;
 
 public class ToDoList extends AppCompatActivity {
 
-    Button btnHome, btnCal, btnAdd, btnDel, btnUpdate, btnLeft, btnRight;
+    Button btnHome, btnCal, btnAdd, btnLeft, btnRight;
     TextView txtDay;
     LinearLayout linearlist;
     CheckBox chklist;
@@ -42,8 +42,6 @@ public class ToDoList extends AppCompatActivity {
         btnHome = findViewById(R.id.btnHome);
         btnCal = findViewById(R.id.btnCal);
         btnAdd = findViewById(R.id.btnAdd);
-        btnUpdate = findViewById(R.id.btnUpdate);
-        btnDel = findViewById(R.id.btnDel);
         btnLeft = findViewById(R.id.btnLeft);
         btnRight = findViewById(R.id.btnRight);
         txtDay = findViewById(R.id.txtDay);
@@ -51,13 +49,13 @@ public class ToDoList extends AppCompatActivity {
 
         listHelper = new ListDBHelper(this);
 
-        selectDB();
-
         year = cal.get(Calendar.YEAR);
         month = cal.get(Calendar.MONTH) + 1;
         date = cal.get(Calendar.DATE);
 
         txtDay.setText(month+"월 "+date+"일");
+
+        selectDB();
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +106,7 @@ public class ToDoList extends AppCompatActivity {
 
             }
         });
-
+/*
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,6 +171,7 @@ public class ToDoList extends AppCompatActivity {
 
             }
         });
+        */
 /*
         btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
