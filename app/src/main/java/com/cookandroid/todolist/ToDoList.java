@@ -39,8 +39,6 @@ public class ToDoList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolist);
 
-        //selectDB();
-
         btnHome = findViewById(R.id.btnHome);
         btnCal = findViewById(R.id.btnCal);
         btnAdd = findViewById(R.id.btnAdd);
@@ -50,9 +48,10 @@ public class ToDoList extends AppCompatActivity {
         btnRight = findViewById(R.id.btnRight);
         txtDay = findViewById(R.id.txtDay);
         linearlist = findViewById(R.id.linearlist);
-        chklist = findViewById(R.id.chklist);
 
         listHelper = new ListDBHelper(this);
+
+        selectDB();
 
         year = cal.get(Calendar.YEAR);
         month = cal.get(Calendar.MONTH) + 1;
@@ -156,7 +155,9 @@ public class ToDoList extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try{
                             sqlDB = listHelper.getWritableDatabase();
-                            sqlDB.execSQL("DELETE FROM listTBL WHERE todo");
+                            sqlDB.execSQL("DELETE FROM listTBL;");
+
+
 
                             sqlDB.close();
                             Toast.makeText(getApplicationContext(), "삭제 성공", Toast.LENGTH_SHORT).show();
@@ -199,22 +200,16 @@ public class ToDoList extends AppCompatActivity {
     } //onCreate
 
     public void selectDB(){
-        sqlDB = listHelper.getReadableDatabase();
-        Cursor cursor = sqlDB.rawQuery("SELECT todo FROM listTBL WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
-
+        sqlDB = listHelper.getWritableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT todo FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
         String todo = "";
 
         while (cursor.moveToNext()){
             todo = cursor.getString(cursor.getColumnIndex("todo"));
-            //Toast.makeText(getApplicationContext(), todo, Toast.LENGTH_SHORT).show();
             CheckBox chk = new CheckBox(this);
             chk.setText(todo);
-            linearlist.addView(chk);
+            linearlist.addView(chk); // 체크박스 추가
         }
-
-        //chklist.setText(todo);
-        //Toast.makeText(getApplicationContext(), todo, Toast.LENGTH_SHORT).show();
-
         cursor.close();
         sqlDB.close();
     }

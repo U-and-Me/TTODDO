@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -19,16 +21,21 @@ public class main extends AppCompatActivity {
 
     TextView txtName, txtDate;
     Button btnList, btnCal;
+    LinearLayout linearlist;
 
     Calendar cal = Calendar.getInstance();
 
     DBHelper MemHelper;
+    ListDBHelper listHelper;
     SQLiteDatabase sqlDB;
 
     String UserId = "";
     String NickName = "";
+    int year = 0;
     int month = 0;
     int date = 0;
+
+    Cursor cursor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,8 +46,10 @@ public class main extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         btnList = findViewById(R.id.btnList);
         btnCal = findViewById(R.id.btnCal);
+        linearlist = findViewById(R.id.linearlist);
 
         MemHelper = new DBHelper(this);
+        listHelper = new ListDBHelper(this);
 
         Intent in = getIntent();
         UserId = in.getStringExtra("Userid");
@@ -62,7 +71,7 @@ public class main extends AppCompatActivity {
 
         // 닉네임 가져오기
         sqlDB = MemHelper.getReadableDatabase();
-        Cursor cursor = sqlDB.rawQuery("SELECT Name FROM " + "memberTBL", null);
+        cursor = sqlDB.rawQuery("SELECT Name FROM " + "memberTBL", null);
         cursor.moveToFirst();
         NickName = cursor.getString(cursor.getColumnIndex("Name"));
 
@@ -72,6 +81,7 @@ public class main extends AppCompatActivity {
         txtName.setText(NickName);
 
         // 날짜 가져오기(월, 일)
+        year = cal.get(Calendar.YEAR);
         month = cal.get(Calendar.MONTH) + 1;
         date = cal.get(Calendar.DATE);
 
@@ -87,5 +97,34 @@ public class main extends AppCompatActivity {
                 txtDate.setText(month+"월 "+date+"일");
         }
 
+        sqlDB = listHelper.getWritableDatabase();
+        cursor = sqlDB.rawQuery("SELECT todo FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
+        String todo = "";
+
+        while (cursor.moveToNext()){
+            todo = cursor.getString(cursor.getColumnIndex("todo"));
+            CheckBox chk = new CheckBox(this);
+            chk.setText(todo);
+            linearlist.addView(chk); // 체크박스 추가
+        }
+        cursor.close();
+        sqlDB.close();
+
     }
+/*
+    public void selectDB(){
+        sqlDB = listHelper.getReadableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT Id FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
+        String todo = "";
+
+        while (cursor.moveToNext()){
+            todo = cursor.getString(cursor.getColumnIndex("todo"));
+            CheckBox chk = new CheckBox(this);
+            chk.setText(todo);
+            linearlist.addView(chk); // 체크박스 추가
+        }
+        cursor.close();
+        sqlDB.close();
+    }
+    */
 }
