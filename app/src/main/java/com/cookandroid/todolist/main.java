@@ -85,46 +85,35 @@ public class main extends AppCompatActivity {
         month = cal.get(Calendar.MONTH) + 1;
         date = cal.get(Calendar.DATE);
 
+        selectDB();
+
         if(month < 10){
             if(date < 10)
                 txtDate.setText("0"+month+"월 "+"0"+date+"일");
             else
                 txtDate.setText("0"+month+"월 "+date+"일");
-        }else{
-            if(date < 10)
-                txtDate.setText(month+"월 "+"0"+date+"일");
+        }else {
+            if (date < 10)
+                txtDate.setText(month + "월 " + "0" + date + "일");
             else
-                txtDate.setText(month+"월 "+date+"일");
+                txtDate.setText(month + "월 " + date + "일");
         }
+    } //onCreate
 
-        sqlDB = listHelper.getWritableDatabase();
-        cursor = sqlDB.rawQuery("SELECT todo FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
-        String todo = "";
-
-        while (cursor.moveToNext()){
-            todo = cursor.getString(cursor.getColumnIndex("todo"));
-            CheckBox chk = new CheckBox(this);
-            chk.setText(todo);
-            linearlist.addView(chk); // 체크박스 추가
-        }
-        cursor.close();
-        sqlDB.close();
-
-    }
-/*
     public void selectDB(){
         sqlDB = listHelper.getReadableDatabase();
-        Cursor cursor = sqlDB.rawQuery("SELECT Id FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
+        Cursor cursor = sqlDB.rawQuery("SELECT todo FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
         String todo = "";
 
         while (cursor.moveToNext()){
             todo = cursor.getString(cursor.getColumnIndex("todo"));
             CheckBox chk = new CheckBox(this);
             chk.setText(todo);
+            chk.setTextSize(18);
             linearlist.addView(chk); // 체크박스 추가
         }
         cursor.close();
         sqlDB.close();
     }
-    */
+
 }
