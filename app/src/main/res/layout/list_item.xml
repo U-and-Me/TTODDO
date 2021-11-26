@@ -14,7 +14,7 @@
             android:id="@+id/chkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="6dp"
             android:layout_marginLeft="5dp"/>
         <TextView
             android:id="@+id/txtTodo"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:textSize="25dp"
+            android:textSize="17dp"
             android:text="test"/>
         <Button
             android:id="@+id/btnDelete"

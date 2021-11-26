@@ -5,6 +5,14 @@ public class ToDo  {
     String todo;
     int checked;
 
+    public ToDo() {    }
+
+    public ToDo(int year, int month, int date) {
+        this.year = year;
+        this.month = month;
+        this.date = date;
+    }
+
     public int getYear() {
         return year;
     }

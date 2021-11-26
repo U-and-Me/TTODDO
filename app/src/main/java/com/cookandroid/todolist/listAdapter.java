@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class listAdapter extends BaseAdapter {
 
@@ -82,6 +81,7 @@ public class listAdapter extends BaseAdapter {
 
                     todoList.remove(i);
                     notifyDataSetChanged();
+                    mtodoList.setList();
 
                 }catch (Exception e){
                     e.printStackTrace();
@@ -95,24 +95,25 @@ public class listAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.getId() == R.id.chkbox){
                     if(checkBox.isChecked()){
-                        boolean ischeck = !checkBox.isChecked();
-                        if(ischeck) todoList.get(i).checked = 1;
+                        int ischeck = todoList.get(i).getChecked();
+                        if(ischeck == 0) todoList.get(i).checked = 1;
                         else todoList.get(i).checked = 0;
+
                         todoList.get(i).setChecked(1);
 
                         sqlDB = listDBHelper.getWritableDatabase();
-                        String sql = "UPDATE listTBL SET chk = 1 WHERE year="+todoItem.getYear()+" AND month="+todoItem.getMonth()+" AND date="+todoItem.getDate()+" AND todo='"+todoItem.getTodo()+"';";
+                        String sql = "UPDATE listTBL SET chk = 1 WHERE year="+todoList.get(i).getYear()+" AND month="+todoList.get(i).getMonth()+" AND date="+todoList.get(i).getDate()+" AND todo='"+todoList.get(i).getTodo()+"';";
                         sqlDB.execSQL(sql);
                         sqlDB.close();
-
+                        mtodoList.setList();
                         notifyDataSetChanged();
                     }else{
-                        todoList.get(i).checked = 0;
+                        todoList.get(i).setChecked(0);
                         sqlDB = listDBHelper.getWritableDatabase();
-                        String sql = "UPDATE listTBL SET chk = 1 WHERE year="+todoItem.getYear()+" AND month="+todoItem.getMonth()+" AND date="+todoItem.getDate()+" AND todo='"+todoItem.getTodo()+"';";
+                        String sql = "UPDATE listTBL SET chk = 0 WHERE year="+todoList.get(i).getYear()+" AND month="+todoList.get(i).getMonth()+" AND date="+todoList.get(i).getDate()+" AND todo='"+todoList.get(i).getTodo()+"';";
                         sqlDB.execSQL(sql);
                         sqlDB.close();
-
+                        mtodoList.setList();
                         notifyDataSetChanged();
                     }
                 }
