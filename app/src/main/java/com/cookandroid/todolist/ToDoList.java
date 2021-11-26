@@ -4,12 +4,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ToDoList extends AppCompatActivity {
@@ -24,8 +28,9 @@ public class ToDoList extends AppCompatActivity {
     Button btnHome, btnCal, btnAdd, btnLeft, btnRight;
     TextView txtDay;
     LinearLayout linearlist;
-    CheckBox chklist;
+    ListView TodoList;
 
+    listAdapter listAdapter;
 
     Calendar cal = Calendar.getInstance();
 
@@ -46,6 +51,7 @@ public class ToDoList extends AppCompatActivity {
         btnRight = findViewById(R.id.btnRight);
         txtDay = findViewById(R.id.txtDay);
         linearlist = findViewById(R.id.linearlist);
+        TodoList = findViewById(R.id.TodoList);
 
         listHelper = new ListDBHelper(this);
 
@@ -88,8 +94,8 @@ public class ToDoList extends AppCompatActivity {
                         try{
                             sqlDB =  listHelper.getWritableDatabase();
                             String list = edtAddtodo.getText().toString();
-                            String sql = "INSERT INTO listTBL(year, month, date, todo) ";
-                            sql+="VALUES("+year+","+month+","+date+",'"+list+"');";
+                            String sql = "INSERT INTO listTBL(year, month, date, todo, chk) ";
+                            sql+="VALUES("+year+","+month+","+date+",'"+list+"',0);";
                             sqlDB.execSQL(sql);
 
                             sqlDB.close();
@@ -199,17 +205,27 @@ public class ToDoList extends AppCompatActivity {
     } //onCreate
 
     public void selectDB(){
+        linearlist.removeAllViews();
         sqlDB = listHelper.getWritableDatabase();
-        Cursor cursor = sqlDB.rawQuery("SELECT todo FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
+        Cursor cursor = sqlDB.rawQuery("SELECT todo, chk FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
+
         String todo = "";
+        int check = 0;
 
         while (cursor.moveToNext()){
             todo = cursor.getString(cursor.getColumnIndex("todo"));
+            //check = cursor.getInt(cursor.getColumnIndex("checklist"));
+
             CheckBox chk = new CheckBox(this);
             chk.setText(todo);
+            if(check == 1) {
+                chk.setChecked(true);
+                chk.setTextColor(Color.parseColor("#CACACA"));
+            }
             linearlist.addView(chk); // 체크박스 추가
         }
         cursor.close();
         sqlDB.close();
     }
+
 }

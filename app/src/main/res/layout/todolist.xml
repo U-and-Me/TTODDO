@@ -241,21 +241,12 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ScrollView
+        <ListView
+            android:id="@+id/TodoList"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp">
-
-            <LinearLayout
-                android:id="@+id/linearlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 

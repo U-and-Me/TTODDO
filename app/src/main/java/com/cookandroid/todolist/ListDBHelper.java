@@ -14,7 +14,7 @@ public class ListDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE listTBL(year INTEGER, month INTEGER, date INTEGER, todo VARCAHR(100));";
+        String sql = "CREATE TABLE listTBL(year INTEGER, month INTEGER, date INTEGER, todo VARCHAR(100), chk INTEGER);";
         sqLiteDatabase.execSQL(sql);
     }
 
