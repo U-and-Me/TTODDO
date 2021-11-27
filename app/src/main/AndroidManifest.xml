@@ -21,7 +21,6 @@
         <activity android:name=".Join_2"/>
         <activity android:name=".main"/>
         <activity android:name=".calender"/>
-        <activity android:name=".ToDoList"/>
     </application>
 
 </manifest>

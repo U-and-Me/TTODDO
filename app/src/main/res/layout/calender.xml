@@ -25,17 +25,10 @@
             android:textColor="#0E1A39"
             android:textStyle="bold"/>
         <Button
-            android:id="@+id/btnList"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="180dp"
-            android:layout_marginTop="-3dp"
-            android:background="@drawable/ic_format_list_bulleted_black_24dp"/>
-        <Button
             android:id="@+id/btnHome"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="230dp"
             android:layout_marginTop="-3dp"
             android:background="@drawable/ic_home_black_24dp"/>
     </LinearLayout>
@@ -66,54 +59,22 @@
             android:textSize="30sp"
             android:textColor="#0E1A39"
             android:textStyle="bold"/>
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="260dp"
+                android:background="@drawable/ic_playlist_add_black_24dp"/>
     </LinearLayout>
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:src="@drawable/ic_lens_black_24dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:text="8시 동아리 회의"
-            android:textColor="#0E1A39"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:src="@drawable/ic_lens_purple_24dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:text="안드 기획서 작성"
-            android:textColor="#0E1A39"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-    </LinearLayout>
--->
 
-    <LinearLayout
-        android:id="@+id/linearlist"
+    <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="20dp">
+        android:layout_marginTop="18dp"
+        android:paddingLeft="10dp">
 
-    </LinearLayout>
+    </ListView>
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.cookandroid.todolist;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,26 +17,19 @@ import java.util.ArrayList;
 
 public class listAdapter extends BaseAdapter {
 
+    ArrayList<ToDo> list = new ArrayList<ToDo>();
+
     ListDBHelper listDBHelper;
     SQLiteDatabase sqlDB;
 
-    ArrayList<ToDo> todoList = new ArrayList<ToDo>();
-
-    ToDoList mtodoList;
-
-    listAdapter(ToDoList activity){
-        mtodoList = activity;
-    }
-
-
     @Override
     public int getCount() {
-        return todoList.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return todoList.get(i);
+        return list.get(i);
     }
 
     @Override
@@ -44,45 +38,44 @@ public class listAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View view, ViewGroup viewGroup) {
 
         final Context context = viewGroup.getContext();
-        listDBHelper = new ListDBHelper(context);
 
-        // 리스트에 아이템이 없는지 확인
+        // 리스트뷰에 아이템이 인플레이드 되어있는지 확인
         if(view == null){
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item,viewGroup, false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.list_item, viewGroup, false);
         }
 
-        TextView txtList = view.findViewById(R.id.txtTodo);
         final CheckBox checkBox = view.findViewById(R.id.chkbox);
-        Button btnDelete = view.findViewById(R.id.btnDelete);
+        TextView txtTodo = view.findViewById(R.id.txtTodo);
+        Button btnDel = view.findViewById(R.id.btnDelete);
 
-        final ToDo todoItem = todoList.get(i);
-        txtList.setText(todoItem.getTodo());
+        // list 배열에서 객체를 가져옴
+        final ToDo listdata = list.get(i);
 
-        if(todoList.get(i).getChecked() == 1){
+        // 각 뷰에 적용
+        txtTodo.setText(listdata.getTodo());
+
+        if(list.get(i).getChecked() == 1){
             checkBox.setChecked(true);
         }else{
             checkBox.setChecked(false);
         }
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        final int i1 = i;
+        btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    String todo = todoItem.getTodo();
-
+                    String todo = listdata.getTodo();
                     sqlDB = listDBHelper.getWritableDatabase();
-                    String sql = "DELETE FROM listTBL WHERE year="+todoItem.getYear()+" AND month="+todoItem.getMonth()+" AND date="+todoItem.getDate()+" AND todo='"+todo+"';";
+                    String sql = "DELETE FROM listTBL WHERE year="+listdata.getYear()+" AND month="+listdata.getMonth()+" AND date="+listdata.getDate()+" AND todo='"+listdata.getTodo()+"';";
                     sqlDB.execSQL(sql);
                     sqlDB.close();
 
-                    todoList.remove(i);
+                    list.remove(i1);
                     notifyDataSetChanged();
-                    mtodoList.setList();
-
                 }catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(context, "삭제 실패", Toast.LENGTH_SHORT).show();
@@ -95,25 +88,29 @@ public class listAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.getId() == R.id.chkbox){
                     if(checkBox.isChecked()){
-                        int ischeck = todoList.get(i).getChecked();
-                        if(ischeck == 0) todoList.get(i).checked = 1;
-                        else todoList.get(i).checked = 0;
+                        if(list.get(i1).getChecked() == 1){
+                            list.get(i1).checked = 0;
+                        }else{
+                            list.get(i1).checked = 1;
+                        }
 
-                        todoList.get(i).setChecked(1);
-
+                        list.get(i1).setChecked(1);
                         sqlDB = listDBHelper.getWritableDatabase();
-                        String sql = "UPDATE listTBL SET chk = 1 WHERE year="+todoList.get(i).getYear()+" AND month="+todoList.get(i).getMonth()+" AND date="+todoList.get(i).getDate()+" AND todo='"+todoList.get(i).getTodo()+"';";
+
+                        String sql = "UPDATE listTBL SET checked=1 WHERE year="+listdata.getYear()+" AND month="+listdata.getMonth()+" AND date="+listdata.getDate()+" AND todo='"+listdata.getTodo()+"';";
                         sqlDB.execSQL(sql);
                         sqlDB.close();
-                        mtodoList.setList();
+
                         notifyDataSetChanged();
+
                     }else{
-                        todoList.get(i).setChecked(0);
+                        list.get(i1).setChecked(0);
                         sqlDB = listDBHelper.getWritableDatabase();
-                        String sql = "UPDATE listTBL SET chk = 0 WHERE year="+todoList.get(i).getYear()+" AND month="+todoList.get(i).getMonth()+" AND date="+todoList.get(i).getDate()+" AND todo='"+todoList.get(i).getTodo()+"';";
+
+                        String sql = "UPDATE listTBL SET checked=0 WHERE year="+listdata.getYear()+" AND month="+listdata.getMonth()+" AND date="+listdata.getDate()+" AND todo='"+listdata.getTodo()+"';";
                         sqlDB.execSQL(sql);
                         sqlDB.close();
-                        mtodoList.setList();
+
                         notifyDataSetChanged();
                     }
                 }
@@ -123,15 +120,17 @@ public class listAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addToDoList(int year, int month, int date, String todo, int check){
-        ToDo tododata = new ToDo();
-        tododata.setYear(year);
-        tododata.setMonth(month);
-        tododata.setDate(date);
-        tododata.setChecked(0);
-        tododata.setTodo(todo);
+    public void addItemToList(int year, int month, int date, String todo, int checked){
+        ToDo listdata = new ToDo();
 
-        todoList.add(tododata);
+        listdata.setYear(year);
+        listdata.setMonth(month);
+        listdata.setDate(date);
+        listdata.setTodo(todo);
+        listdata.setChecked(checked);
 
+        // listdata 객체를 list 배열에 추가
+        list.add(listdata);
     }
+
 }
