@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
@@ -38,7 +39,6 @@ public class calender extends AppCompatActivity {
     SQLiteDatabase sqlDB;
 
     int year, month, date, day;
-    int cur_year, cur_month, cur_date;
     String[] days = {"일", "월", "화", "수", "목", "금", "토"};
 
     @Override
@@ -129,6 +129,8 @@ public class calender extends AppCompatActivity {
                 txtMonth.setText(Integer.toString(month));
                 txtDate.setText(idayOfMonth+".");
                 txtDay.setText(days[iday-1]);
+
+                showList();
 
             }
         });

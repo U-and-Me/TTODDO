@@ -1,6 +1,7 @@
 package com.cookandroid.todolist;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class listAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         final Context context = viewGroup.getContext();
+        listDBHelper = new ListDBHelper(context);
 
         // 리스트뷰에 아이템이 인플레이드 되어있는지 확인
         if(view == null){
@@ -68,9 +70,15 @@ public class listAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 try{
+                    int year = listdata.getYear();
+                    int month = listdata.getMonth();
+                    int date = listdata.getDate();
                     String todo = listdata.getTodo();
+                    System.out.println(year + "  " + month + "    " + date + "    "+todo);
+                   // Toast.makeText(context, listdata.getDate(), Toast.LENGTH_SHORT).show();
+
                     sqlDB = listDBHelper.getWritableDatabase();
-                    String sql = "DELETE FROM listTBL WHERE year="+listdata.getYear()+" AND month="+listdata.getMonth()+" AND date="+listdata.getDate()+" AND todo='"+listdata.getTodo()+"';";
+                    String sql = "DELETE FROM listTBL WHERE year="+year+" AND month="+month+" AND date="+date+" AND todo='"+todo+"';";
                     sqlDB.execSQL(sql);
                     sqlDB.close();
 

@@ -61,13 +61,7 @@ public class main extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ToDoList.class);
-                startActivity(intent);
-            }
-        });
+
 
         // 닉네임 가져오기
         sqlDB = MemHelper.getReadableDatabase();
