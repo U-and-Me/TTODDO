@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -22,12 +25,15 @@ public class main extends AppCompatActivity {
     TextView txtName, txtDate;
     Button btnList, btnCal;
     LinearLayout linearlist;
+    CheckBox chk;
 
     Calendar cal = Calendar.getInstance();
 
     DBHelper MemHelper;
     ListDBHelper listHelper;
     SQLiteDatabase sqlDB;
+
+    ArrayList<Integer> chkList = new ArrayList<Integer>();
 
     String UserId = "";
     String NickName = "";
@@ -92,18 +98,25 @@ public class main extends AppCompatActivity {
             else
                 txtDate.setText(month + "월 " + date + "일");
         }
+
     } //onCreate
 
     public void selectDB(){
         sqlDB = listHelper.getReadableDatabase();
-        Cursor cursor = sqlDB.rawQuery("SELECT todo FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
+        Cursor cursor = sqlDB.rawQuery("SELECT todo, checked FROM " + "listTBL"+" WHERE year = "+year+" AND month ="+month+" AND date ="+date+";", null);
         String todo = "";
+        int check = 0;
 
         while (cursor.moveToNext()){
             todo = cursor.getString(cursor.getColumnIndex("todo"));
-            CheckBox chk = new CheckBox(this);
+            check = cursor.getInt(cursor.getColumnIndex("checked"));
+            //Toast.makeText(getApplicationContext(), todo+"  "+check, Toast.LENGTH_SHORT).show();
+            chk = new CheckBox(this);
             chk.setText(todo);
             chk.setTextSize(18);
+            if(check == 0) chk.setChecked(false);
+            else chk.setChecked(true);
+            chkList.add(0);
             linearlist.addView(chk); // 체크박스 추가
         }
         cursor.close();

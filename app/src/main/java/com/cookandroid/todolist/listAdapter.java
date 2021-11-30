@@ -60,7 +60,7 @@ public class listAdapter extends BaseAdapter {
         // 각 뷰에 적용
         txtTodo.setText(listdata.getTodo());
 
-        if(list.get(i).getChecked() == 1){
+        if(listdata.getChecked() == 1){
             checkBox.setChecked(true);
         }else{
             checkBox.setChecked(false);
@@ -94,34 +94,40 @@ public class listAdapter extends BaseAdapter {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.getId() == R.id.chkbox){
-                    if(checkBox.isChecked()){
-                        if(list.get(i1).getChecked() == 1){
-                            list.get(i1).checked = 0;
-                        }else{
-                            list.get(i1).checked = 1;
-                        }
+               // Toast.makeText(context, listdata.getTodo()+"  "+listdata.getChecked(), Toast.LENGTH_SHORT).show();
+                //if(compoundButton.getId() == R.id.chkbox){
+                    if(listdata.getChecked()==1){
+                            checkBox.setChecked(false);
+                            list.get(i1).setChecked(0);
+                            sqlDB = listDBHelper.getWritableDatabase();
 
+                            String sql = "UPDATE listTBL SET checked=0 WHERE year=" + listdata.getYear() + " AND month=" + listdata.getMonth() + " AND date=" + listdata.getDate() + " AND todo='" + listdata.getTodo() + "';";
+                            sqlDB.execSQL(sql);
+
+                            // sqlDB.close();
+
+                            // System.out.println(list.get(i1).getTodo() + "    " + list.get(i1).getChecked());
+                    /*    if(list.get(i1).getChecked() == 1){
+                            //System.out.println(list.get(i1).getTodo()+"  111111");
+                            list.get(i1).checked = 0;4
+                        }else{
+                            //System.out.println(list.get(i1).getTodo()+"  000000");
+                            list.get(i1).checked = 1;
+                        }*/
+                            notifyDataSetChanged();
+
+                    }else{
+                        checkBox.setChecked(true);
                         list.get(i1).setChecked(1);
                         sqlDB = listDBHelper.getWritableDatabase();
 
                         String sql = "UPDATE listTBL SET checked=1 WHERE year="+listdata.getYear()+" AND month="+listdata.getMonth()+" AND date="+listdata.getDate()+" AND todo='"+listdata.getTodo()+"';";
                         sqlDB.execSQL(sql);
-                        sqlDB.close();
-
-                        notifyDataSetChanged();
-
-                    }else{
-                        list.get(i1).setChecked(0);
-                        sqlDB = listDBHelper.getWritableDatabase();
-
-                        String sql = "UPDATE listTBL SET checked=0 WHERE year="+listdata.getYear()+" AND month="+listdata.getMonth()+" AND date="+listdata.getDate()+" AND todo='"+listdata.getTodo()+"';";
-                        sqlDB.execSQL(sql);
-                        sqlDB.close();
+                       // sqlDB.close();
 
                         notifyDataSetChanged();
                     }
-                }
+              // }
             }
         });
 
