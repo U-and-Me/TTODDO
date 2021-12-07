@@ -9,5 +9,4 @@
 
 <h3> 관련 자료 </h3>
 [TTODDO 발표자료]<br>
-(https://github.com/U-and-Me/TTODDO/files/7664679/default.pdf)
-
+(https://github.com/U-and-Me/TTODDO/files/7664683/TTODDO.pdf)
